@@ -1,0 +1,17 @@
+.pokemonCardCont {
+  border: solid black 2px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemonCardCont img {
+  width: 10em;
+}
+
+.pokemonCardCont:hover {
+  cursor: pointer;
+  border-color: blue;
+}
