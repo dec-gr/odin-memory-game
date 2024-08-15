@@ -48,7 +48,7 @@ function App() {
     Math.floor(Math.random() * 1026)
   );
 
-  pokemonIdArray = [...new Set(pokemonIdArray)].slice(0, 7);
+  pokemonIdArray = [...new Set(pokemonIdArray)].slice(0, 8);
 
   useEffect(() => {
     let ignore = false;
