@@ -44,9 +44,11 @@ function App() {
     endGame();
   }
 
-  const pokemonIdArray = Array.from({ length: 8 }, () =>
+  let pokemonIdArray = Array.from({ length: 14 }, () =>
     Math.floor(Math.random() * 1026)
   );
+
+  pokemonIdArray = [...new Set(pokemonIdArray)].slice(0, 7);
 
   useEffect(() => {
     let ignore = false;
