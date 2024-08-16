@@ -2,22 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import CardHolder from './components/CardHolder/CardHolder.jsx';
 import GameBoard from './components/GameBoard/GameBoard.jsx';
-
-const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/';
-
-async function fetchPokemon(pokemonIdArray) {
-  const pokemonArray = [];
-  for (let id of pokemonIdArray) {
-    const response = await fetch(pokemonUrl + id);
-    const responseJson = await response.json();
-    pokemonArray.push({
-      name: responseJson.name,
-      url: responseJson.sprites.front_default,
-      id: responseJson.id,
-    });
-  }
-  return pokemonArray;
-}
+import fetchPokemon from './utils/api.js';
 
 function App() {
   const [score, setScore] = useState(0);
