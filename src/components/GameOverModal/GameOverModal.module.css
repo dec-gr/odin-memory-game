@@ -11,7 +11,9 @@
 }
 
 .modalCont {
-  background: white;
+  background-image: url('/src/assets/ashWin.gif');
+  background-size: cover;
+  /* background: white; */
   height: 150px;
   width: 240px;
   margin: auto;
@@ -19,4 +21,9 @@
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 2px solid black;
+}
+
+h3 {
+  color: white;
+  font-size: 2.5em;
 }

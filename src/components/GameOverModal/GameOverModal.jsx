@@ -8,12 +8,26 @@ import styles from './GameOverModal.module.css';
 //   );
 // }
 
-export default function GameOverModal({ isOpen, onClose, children }) {
+export default function GameOverModal({
+  isOpen,
+  onClose,
+  playerWon,
+  children,
+}) {
   if (!isOpen) return null;
+
+  const backgroundUrl = playerWon
+    ? '/src/assets/ashWin.gif'
+    : '/src/assets/ashLose.gif';
 
   return (
     <div className={styles.screenFilterCont} onClick={onClose}>
-      <div className={styles.modalCont}>{children}</div>
+      <div
+        className={styles.modalCont}
+        style={{ backgroundImage: `url(${backgroundUrl})` }}
+      >
+        {children}
+      </div>
     </div>
   );
 }

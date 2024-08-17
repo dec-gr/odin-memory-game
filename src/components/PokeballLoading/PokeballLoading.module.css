@@ -1,0 +1,28 @@
+.loadingCont {
+  /* margin: 1em; */
+  /* padding-top: 5em; */
+  max-height: fit-content;
+  max-width: 10em;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokeballImg {
+  margin-top: 50%;
+  width: 50%;
+  animation: bounce 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform: translateY(-50%);
+  /* transform: translateY(25%); */
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(50%);
+  }
+}

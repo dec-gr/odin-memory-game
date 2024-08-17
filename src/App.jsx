@@ -3,17 +3,8 @@ import './App.css';
 import CardHolder from './components/CardHolder/CardHolder.jsx';
 import GameBoard from './components/GameBoard/GameBoard.jsx';
 import GameOverModal from './components/GameOverModal/GameOverModal.jsx';
+import PokeballLoading from './components/PokeballLoading/PokeballLoading.jsx';
 import fetchPokemon from './utils/api.js';
-
-function Loading() {
-  return (
-    <div className="loader-container">
-      <div className="loader">
-        <h1>Loading...</h1>
-      </div>
-    </div>
-  );
-}
 
 function App() {
   const [score, setScore] = useState(0);
@@ -85,7 +76,7 @@ function App() {
     <>
       <GameBoard score={score} highScore={highScore}>
         {isLoading ? (
-          <Loading />
+          <PokeballLoading />
         ) : (
           <CardHolder
             key={gameNumber}
@@ -96,7 +87,7 @@ function App() {
         )}
       </GameBoard>
 
-      <GameOverModal isOpen={open} onClose={closeModal}>
+      <GameOverModal isOpen={open} onClose={closeModal} playerWon={playerWon}>
         <>{playerWon ? <h3>You Win</h3> : <h3>You Loose</h3>}</>
       </GameOverModal>
     </>
