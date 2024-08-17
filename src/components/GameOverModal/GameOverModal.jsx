@@ -16,9 +16,7 @@ export default function GameOverModal({
 }) {
   if (!isOpen) return null;
 
-  const backgroundUrl = playerWon
-    ? '/src/assets/ashWin.gif'
-    : '/src/assets/ashLose.gif';
+  const backgroundUrl = playerWon ? '/src/assets/ashWin.gif' : '/ashLose.gif';
 
   return (
     <div className={styles.screenFilterCont} onClick={onClose}>
