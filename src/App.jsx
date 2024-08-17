@@ -4,17 +4,27 @@ import CardHolder from './components/CardHolder/CardHolder.jsx';
 import GameBoard from './components/GameBoard/GameBoard.jsx';
 import fetchPokemon from './utils/api.js';
 
+function Loading() {
+  return (
+    <div className="loader-container">
+      <div className="loader">Loading...</div>
+    </div>
+  );
+}
+
 function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [gameNumber, setGameNumber] = useState(0);
   const [pokemonData, setPokemonData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   function incrementScore() {
     setScore(score + 1);
   }
 
   function endGame() {
+    setIsLoading(true);
     if (score >= highScore) {
       setHighScore(score);
       alert('You Win');
@@ -42,6 +52,7 @@ function App() {
       const fetchedPokemonData = await fetchPokemon(pokemonIdArray);
       if (!ignore) {
         setPokemonData(fetchedPokemonData);
+        setIsLoading(false);
       }
     }
 
@@ -55,12 +66,16 @@ function App() {
   return (
     <>
       <GameBoard score={score} highScore={highScore}>
-        <CardHolder
-          key={gameNumber}
-          pokemonData={pokemonData}
-          endGame={endGame}
-          incrementScore={incrementScore}
-        ></CardHolder>
+        {isLoading ? (
+          <h1>Loading</h1>
+        ) : (
+          <CardHolder
+            key={gameNumber}
+            pokemonData={pokemonData}
+            endGame={endGame}
+            incrementScore={incrementScore}
+          ></CardHolder>
+        )}
       </GameBoard>
     </>
   );
