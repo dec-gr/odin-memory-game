@@ -1,3 +1,9 @@
+.cardHolderCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+}
+
 .pokemonCardCont {
   border: solid black 2px;
   display: flex;
@@ -5,13 +11,79 @@
   width: fit-content;
   justify-content: center;
   align-items: center;
+  width: 15em;
+  height: 20em;
+  color: white;
+  position: relative;
+  perspective: 800px;
 }
 
 .pokemonCardCont img {
-  width: 10em;
+  margin: 0;
+  width: 90%;
 }
 
 .pokemonCardCont:hover {
   cursor: pointer;
-  border-color: blue;
+  border-color: rgba(0, 0, 255, 0.545);
+}
+
+.front,
+.back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  background-color: green;
+  transform: rotateY(180deg);
+}
+
+.back {
+  background-image: url('./pokecardBack.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card {
+  transition: transform 0.85s;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  border-radius: 15%;
+}
+
+/* .pokemonCardCont:hover > .card {
+  animation: flip-card 0.85s;
+  animation-fill-mode: forwards;
+} */
+
+.pokemonCardCont.showBack > .card {
+  animation: flip-card 0.85s;
+  animation-fill-mode: forwards;
+}
+
+.pokemonCardCont.showFront > .card {
+  animation: flip-card 0.85s;
+  animation-fill-mode: forwards;
+  /* animation-direction: reverse; */
+}
+
+/* .card {
+  transition: 0.85s;
+} */
+.show {
+}
+
+@keyframes flip-card {
+  from {
+    transform: rotateY(0deg);
+    pointer-events: none;
+  }
+  to {
+    transform: rotateY(180deg);
+  }
 }

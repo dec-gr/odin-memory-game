@@ -16,6 +16,8 @@ function App() {
 
   const [open, setOpen] = useState(false);
 
+  const [cardsVisible, setCardsVisible] = useState(false);
+
   const maximumScore = 8;
 
   const openModal = () => {
@@ -27,6 +29,7 @@ function App() {
 
   function incrementScore() {
     setScore(score + 1);
+    setCardsVisible(false);
   }
 
   function endGame() {
@@ -48,6 +51,7 @@ function App() {
     endGame();
   }
 
+  //TODO 0 isn't a valid id
   let pokemonIdArray = Array.from({ length: 14 }, () =>
     Math.floor(Math.random() * 1026)
   );
@@ -83,6 +87,8 @@ function App() {
             pokemonData={pokemonData}
             endGame={endGame}
             incrementScore={incrementScore}
+            cardsVisible={cardsVisible}
+            setCardsVisible={setCardsVisible}
           ></CardHolder>
         )}
       </GameBoard>
