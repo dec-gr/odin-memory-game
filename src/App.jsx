@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import CardHolder from './components/CardHolder/CardHolder.jsx';
 import GameBoard from './components/GameBoard/GameBoard.jsx';
+import GameOverModal from './components/GameOverModal/GameOverModal.jsx';
 import fetchPokemon from './utils/api.js';
 
 function Loading() {
   return (
     <div className="loader-container">
-      <div className="loader">Loading...</div>
+      <div className="loader">
+        <h1>Loading...</h1>
+      </div>
     </div>
   );
 }
@@ -18,19 +21,37 @@ function App() {
   const [gameNumber, setGameNumber] = useState(0);
   const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [playerWon, setPlayerWon] = useState(false);
+
+  const [open, setOpen] = useState(false);
+
+  //let playerWon = false;
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const openModal = () => {
+    setOpen(true);
+  };
 
   function incrementScore() {
     setScore(score + 1);
   }
 
   function endGame() {
-    setIsLoading(true);
     if (score >= highScore) {
       setHighScore(score);
-      alert('You Win');
+      //alert('You Win');
+      setPlayerWon(true);
+      console.log(playerWon);
     } else {
-      alert('Better luck next time');
+      //alert('Better luck next time');
+      setPlayerWon(false);
+      console.log(playerWon);
     }
+    openModal();
+    setIsLoading(true);
     setScore(0);
     setGameNumber(gameNumber + 1);
   }
@@ -67,7 +88,7 @@ function App() {
     <>
       <GameBoard score={score} highScore={highScore}>
         {isLoading ? (
-          <h1>Loading</h1>
+          <Loading />
         ) : (
           <CardHolder
             key={gameNumber}
@@ -77,6 +98,10 @@ function App() {
           ></CardHolder>
         )}
       </GameBoard>
+
+      <GameOverModal isOpen={open} onClose={handleClose}>
+        <>{playerWon ? <h3>You Win</h3> : <h3>You Loose</h3>}</>
+      </GameOverModal>
     </>
   );
 }
