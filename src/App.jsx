@@ -25,14 +25,13 @@ function App() {
 
   const [open, setOpen] = useState(false);
 
-  //let playerWon = false;
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const maximumScore = 8;
 
   const openModal = () => {
     setOpen(true);
+  };
+  const closeModal = () => {
+    setOpen(false);
   };
 
   function incrementScore() {
@@ -40,23 +39,21 @@ function App() {
   }
 
   function endGame() {
-    if (score >= highScore) {
-      setHighScore(score);
-      //alert('You Win');
-      setPlayerWon(true);
-      console.log(playerWon);
-    } else {
-      //alert('Better luck next time');
-      setPlayerWon(false);
-      console.log(playerWon);
+    {
+      score >= highScore && setHighScore(score);
     }
+
+    {
+      score >= maximumScore ? setPlayerWon(true) : setPlayerWon(false);
+    }
+
     openModal();
     setIsLoading(true);
     setScore(0);
     setGameNumber(gameNumber + 1);
   }
 
-  if (score >= 8) {
+  if (score >= maximumScore) {
     endGame();
   }
 
@@ -99,7 +96,7 @@ function App() {
         )}
       </GameBoard>
 
-      <GameOverModal isOpen={open} onClose={handleClose}>
+      <GameOverModal isOpen={open} onClose={closeModal}>
         <>{playerWon ? <h3>You Win</h3> : <h3>You Loose</h3>}</>
       </GameOverModal>
     </>
