@@ -5,6 +5,7 @@ import GameBoard from './components/GameBoard/GameBoard.jsx';
 import GameOverModal from './components/GameOverModal/GameOverModal.jsx';
 import PokeballLoading from './components/PokeballLoading/PokeballLoading.jsx';
 import fetchPokemon from './utils/api.js';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [score, setScore] = useState(0);
@@ -23,13 +24,62 @@ function App() {
   const openModal = () => {
     setOpen(true);
   };
+
   const closeModal = () => {
     setOpen(false);
   };
 
   function incrementScore() {
     setScore(score + 1);
+  }
+
+  function shufflePokemons() {
+    const availableCards = [...pokemonData];
+    const shuffledPokemons = [];
+    while (availableCards.length) {
+      const index = Math.floor(Math.random() * availableCards.length);
+      const card = availableCards[index];
+      // Need to give a new key/uniqid for react to detect a rerender
+      card.id = uuidv4();
+      shuffledPokemons.push(card);
+      availableCards.splice(index, 1);
+    }
+    setPokemonData(shuffledPokemons);
+  }
+
+  async function handleCardClick(id) {
+    if (!cardsVisible) return;
+
     setCardsVisible(false);
+
+    const clickedCard = pokemonData.find((a) => a.id === id);
+
+    console.log(clickedCard);
+
+    if (
+      clickedCard.isClicked ||
+      pokemonData.every((pokemon) => pokemon.isClicked)
+    ) {
+      endGame();
+    } else {
+      updateCardClicked(id);
+      incrementScore();
+
+      setTimeout(() => {
+        shufflePokemons();
+      }, 600);
+
+      setTimeout(() => {
+        setCardsVisible(true);
+      }, 1800);
+    }
+  }
+
+  function updateCardClicked(id) {
+    const newCards = [...pokemonData];
+    const cardToClick = newCards.find((a) => a.id === id);
+    cardToClick.isClicked = true;
+    setPokemonData(newCards);
   }
 
   function endGame() {
@@ -76,6 +126,16 @@ function App() {
     };
   }, [gameNumber]);
 
+  useEffect(() => {
+    function flipCards() {
+      setCardsVisible(true);
+    }
+
+    const timeoutId = setTimeout(flipCards, 800);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <>
       <GameBoard score={score} highScore={highScore}>
@@ -83,12 +143,12 @@ function App() {
           <PokeballLoading />
         ) : (
           <CardHolder
-            key={gameNumber}
             pokemonData={pokemonData}
             endGame={endGame}
             incrementScore={incrementScore}
             cardsVisible={cardsVisible}
             setCardsVisible={setCardsVisible}
+            handleCardClick={handleCardClick}
           ></CardHolder>
         )}
       </GameBoard>

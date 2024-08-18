@@ -5,7 +5,6 @@
 }
 
 .pokemonCardCont {
-  border: solid black 2px;
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -49,11 +48,19 @@
 }
 
 .card {
-  transition: transform 0.85s;
+  /* transition: transform 0.85s; */
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
   border-radius: 15%;
+}
+
+.card {
+  transition: 0.85s;
+}
+
+.pokemonCardCont.showFront .card {
+  transform: rotateY(180deg);
 }
 
 /* .pokemonCardCont:hover > .card {
@@ -62,28 +69,26 @@
 } */
 
 .pokemonCardCont.showBack > .card {
-  animation: flip-card 0.85s;
-  animation-fill-mode: forwards;
+  /* animation: flip-card 0.85s;
+  animation-fill-mode: forwards; */
 }
 
 .pokemonCardCont.showFront > .card {
-  animation: flip-card 0.85s;
+  /* animation: flip-card 0.85s;
   animation-fill-mode: forwards;
-  /* animation-direction: reverse; */
+  animation-direction: reverse; */
 }
 
 /* .card {
   transition: 0.85s;
 } */
-.show {
-}
 
 @keyframes flip-card {
   from {
-    transform: rotateY(0deg);
+    transform: rotateY(180deg);
     pointer-events: none;
   }
   to {
-    transform: rotateY(180deg);
+    transform: rotateY(0deg);
   }
 }

@@ -5,14 +5,14 @@ import Tilt from 'react-parallax-tilt';
 
 export default function CardHolder(props) {
   //const [isFlipped, setIsFlipped] = useState(true);
-  let shuffledPokemonData = props.pokemonData
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value);
+  // let shuffledPokemonData = props.pokemonData
+  //   .map((value) => ({ value, sort: Math.random() }))
+  //   .sort((a, b) => a.sort - b.sort)
+  //   .map(({ value }) => value);
 
   return (
     <div className={`${styles.cardHolderCont}`}>
-      {shuffledPokemonData.map((pokemon) => (
+      {props.pokemonData.map((pokemon) => (
         <PokemonCard
           key={pokemon.id}
           pokemon={pokemon}
@@ -20,6 +20,7 @@ export default function CardHolder(props) {
           incrementScore={props.incrementScore}
           cardsVisible={props.cardsVisible}
           setCardsVisible={props.setCardsVisible}
+          handleCardClick={() => props.handleCardClick(pokemon.id)}
         ></PokemonCard>
       ))}
     </div>

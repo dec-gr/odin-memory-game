@@ -13,6 +13,7 @@ async function fetchPokemon(pokemonIdArray) {
       name: capitalise(responseJson.name),
       url: responseJson.sprites.front_default,
       id: responseJson.id,
+      isClicked: false,
     };
   });
 

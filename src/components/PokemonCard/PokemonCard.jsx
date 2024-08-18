@@ -3,22 +3,20 @@ import Tilt from 'react-parallax-tilt';
 import { useState, useEffect } from 'react';
 
 export default function PokemonCard(props) {
-  const [clicked, setClicked] = useState(false);
+  // function handleCardClick() {
+  //   if (clicked) {
+  //     props.endGame();
+  //   } else {
+  //     setClicked(true);
+  //     props.incrementScore();
+  //   }
+  // }
 
-  function handleCardClick() {
-    if (clicked) {
-      props.endGame();
-    } else {
-      setClicked(true);
-      props.incrementScore();
-    }
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      props.setCardsVisible(true);
-    }, 850);
-  });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     props.setCardsVisible(true);
+  //   }, 850);
+  // });
 
   // className={`${styles.pokemonCardCont}  ${
   //   props.cardsVisible ? styles.showFront : styles.showBack
@@ -35,18 +33,16 @@ export default function PokemonCard(props) {
     >
       <div
         className={`${styles.pokemonCardCont}  ${
-          props.cardsVisible ? styles.showFront : styles.showBack
+          props.cardsVisible ? styles.showFront : 'null'
         }`}
-        onClick={handleCardClick}
+        onClick={props.handleCardClick}
       >
         <div className={styles.card}>
           <div className={styles.front}>
             <img src={props.pokemon.url} alt="" />
             <p className="txt">{props.pokemon.name}</p>
           </div>
-          <div className={styles.back}>
-            This is the back + {props.cardsVisible} +
-          </div>
+          <div className={styles.back}></div>
         </div>
       </div>
     </Tilt>
