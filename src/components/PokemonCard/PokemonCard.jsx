@@ -1,27 +1,7 @@
 import styles from './PokemonCard.module.css';
 import Tilt from 'react-parallax-tilt';
-import { useState, useEffect } from 'react';
 
 export default function PokemonCard(props) {
-  // function handleCardClick() {
-  //   if (clicked) {
-  //     props.endGame();
-  //   } else {
-  //     setClicked(true);
-  //     props.incrementScore();
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     props.setCardsVisible(true);
-  //   }, 850);
-  // });
-
-  // className={`${styles.pokemonCardCont}  ${
-  //   props.cardsVisible ? styles.showFront : styles.showBack
-  // }`}
-
   return (
     <Tilt
       tiltReverse
@@ -48,7 +28,3 @@ export default function PokemonCard(props) {
     </Tilt>
   );
 }
-
-// ${
-//   props.cardsVisible ? styles.flip : 'Knull'
-// }`

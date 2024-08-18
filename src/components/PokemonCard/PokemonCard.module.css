@@ -1,9 +1,3 @@
-.cardHolderCont {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1em;
-}
-
 .pokemonCardCont {
   display: flex;
   flex-direction: column;
@@ -70,34 +64,4 @@
 
 .pokemonCardCont.showFront .card {
   transform: rotateY(180deg);
-}
-
-/* .pokemonCardCont:hover > .card {
-  animation: flip-card 0.85s;
-  animation-fill-mode: forwards;
-} */
-
-.pokemonCardCont.showBack > .card {
-  /* animation: flip-card 0.85s;
-  animation-fill-mode: forwards; */
-}
-
-.pokemonCardCont.showFront > .card {
-  /* animation: flip-card 0.85s;
-  animation-fill-mode: forwards;
-  animation-direction: reverse; */
-}
-
-/* .card {
-  transition: 0.85s;
-} */
-
-@keyframes flip-card {
-  from {
-    transform: rotateY(180deg);
-    pointer-events: none;
-  }
-  to {
-    transform: rotateY(0deg);
-  }
 }

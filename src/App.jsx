@@ -14,9 +14,7 @@ function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [playerWon, setPlayerWon] = useState(false);
-
   const [open, setOpen] = useState(false);
-
   const [cardsVisible, setCardsVisible] = useState(false);
 
   const maximumScore = 8;
@@ -33,13 +31,15 @@ function App() {
     setScore(score + 1);
   }
 
+  // Learnt -> spent hours trying to get the card flip animation smooth
+  // pokemon need shuffling outside of the cardHolder for that
+  // figured it out from https://github.com/Sharkri/pokememo's solution
   function shufflePokemons() {
     const availableCards = [...pokemonData];
     const shuffledPokemons = [];
     while (availableCards.length) {
       const index = Math.floor(Math.random() * availableCards.length);
       const card = availableCards[index];
-      // Need to give a new key/uniqid for react to detect a rerender
       card.id = uuidv4();
       shuffledPokemons.push(card);
       availableCards.splice(index, 1);
@@ -104,7 +104,6 @@ function App() {
     endGame();
   }
 
-  //TODO 0 isn't a valid id
   let pokemonIdArray = Array.from({ length: 14 }, () =>
     Math.floor(Math.random() * 1025 + 1)
   );
@@ -129,11 +128,13 @@ function App() {
     };
   }, [gameNumber]);
 
-  function flipCards() {
-    setCardsVisible(true);
-  }
+  // Flip cards back face up on initial load
 
   useEffect(() => {
+    function flipCards() {
+      setCardsVisible(true);
+    }
+
     const timeoutId = setTimeout(flipCards, 800);
 
     return () => clearTimeout(timeoutId);

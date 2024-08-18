@@ -18,18 +18,14 @@
 
 .gameTitle {
   flex: 0 1 auto;
-
   height: 100px;
   position: absolute;
-  /* new */
   left: 50%;
   transform: translateX(-50%);
 }
 
 .scoreBoard {
   flex: 0 1 auto;
-
   height: 100px;
   margin-left: auto;
-  /* new */
 }

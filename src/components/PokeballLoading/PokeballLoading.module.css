@@ -1,6 +1,4 @@
 .loadingCont {
-  /* margin: 1em; */
-  /* padding-top: 5em; */
   max-height: fit-content;
   max-width: 10em;
   display: flex;
@@ -15,7 +13,6 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   transform: translateY(-50%);
-  /* transform: translateY(25%); */
 }
 
 @keyframes bounce {
