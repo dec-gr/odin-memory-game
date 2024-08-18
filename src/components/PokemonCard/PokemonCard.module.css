@@ -19,7 +19,8 @@
 
 .pokemonCardCont img {
   margin: 0;
-  width: 90%;
+  width: 80%;
+  margin-top: 1em;
 }
 
 .pokemonCardCont:hover {
@@ -36,8 +37,16 @@
 }
 
 .front {
-  background-color: green;
+  background-color: #0a0a0a2b;
+  border-radius: 5%;
   transform: rotateY(180deg);
+  font-size: 18px;
+  border: solid white 0.01rem;
+}
+
+.front p {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .back {

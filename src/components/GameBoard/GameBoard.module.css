@@ -3,4 +3,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #ffcb05;
+}
+
+.gameBoardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  width: 80vw;
+  height: 200px;
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
+}
+
+.gameTitle {
+  flex: 0 1 auto;
+
+  height: 100px;
+  position: absolute;
+  /* new */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scoreBoard {
+  flex: 0 1 auto;
+
+  height: 100px;
+  margin-left: auto;
+  /* new */
 }
