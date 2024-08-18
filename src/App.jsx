@@ -106,7 +106,7 @@ function App() {
 
   //TODO 0 isn't a valid id
   let pokemonIdArray = Array.from({ length: 14 }, () =>
-    Math.floor(Math.random() * 1026)
+    Math.floor(Math.random() * 1025 + 1)
   );
 
   pokemonIdArray = [...new Set(pokemonIdArray)].slice(0, 8);
