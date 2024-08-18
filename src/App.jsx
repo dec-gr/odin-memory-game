@@ -95,6 +95,9 @@ function App() {
     setIsLoading(true);
     setScore(0);
     setGameNumber(gameNumber + 1);
+    setTimeout(() => {
+      setCardsVisible(true);
+    }, 1800);
   }
 
   if (score >= maximumScore) {
@@ -126,11 +129,11 @@ function App() {
     };
   }, [gameNumber]);
 
-  useEffect(() => {
-    function flipCards() {
-      setCardsVisible(true);
-    }
+  function flipCards() {
+    setCardsVisible(true);
+  }
 
+  useEffect(() => {
     const timeoutId = setTimeout(flipCards, 800);
 
     return () => clearTimeout(timeoutId);
