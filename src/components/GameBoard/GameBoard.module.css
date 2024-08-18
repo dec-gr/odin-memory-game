@@ -14,6 +14,8 @@
   width: 80vw;
   height: 200px;
   text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .gameTitle {
@@ -28,4 +30,12 @@
   flex: 0 1 auto;
   height: 100px;
   margin-left: auto;
+}
+
+.gameBoardHeader h1 {
+  font-size: 3em;
+}
+
+.gameBoardHeader h2 {
+  font-size: 1em;
 }
